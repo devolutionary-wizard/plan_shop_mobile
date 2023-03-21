@@ -7,7 +7,7 @@ import 'package:plan_shop/utilities/page_navigation.dart';
 import 'package:plan_shop/widgets/buttons/round_button.dart';
 
 class WelcomeScreen extends StatelessWidget with DeviceChecker {
-   WelcomeScreen({Key? key}) : super(key: key);
+  WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,9 +70,9 @@ class WelcomeScreen extends StatelessWidget with DeviceChecker {
                         height: 40,
                         text: 'Sign In',
                         onPressed: () {
-                          if(isIOS){
+                          if (isIOS) {
                             openPageIOS(const RegisterScreen(), context);
-                          }else{
+                          } else {
                             openPageAndroid(const RegisterScreen(), context);
                           }
                         }),
@@ -83,11 +83,10 @@ class WelcomeScreen extends StatelessWidget with DeviceChecker {
                         height: 40,
                         text: 'Sign Up',
                         onPressed: () {
-                          print('test');
-                          if(isIOS){
-                            openPageIOS(const LoginScreen(), context);
-                          }else{
-                            openPageAndroid(const LoginScreen(), context);
+                          if (isIOS) {
+                            openPageIOS(LoginScreen(), context);
+                          } else {
+                            openPageAndroid(LoginScreen(), context);
                           }
                         }),
                   ],
