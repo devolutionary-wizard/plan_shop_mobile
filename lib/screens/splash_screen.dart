@@ -16,9 +16,9 @@ class _SplashScreenState extends State<SplashScreen> with DeviceChecker {
   void initState() {
     Future.delayed(const Duration(seconds: 1), () async {
       if (isIOS) {
-        openPageIOS(const WelcomeScreen(), context);
+        openPageIOS( WelcomeScreen(), context);
       } else {
-        openPageAndroid(const WelcomeScreen(), context);
+        openPageAndroid( WelcomeScreen(), context);
       }
     });
     super.initState();

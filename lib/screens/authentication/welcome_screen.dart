@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:plan_shop/screens/authentication/login_screen.dart';
+import 'package:plan_shop/screens/authentication/register_screen.dart';
+import 'package:plan_shop/utilities/mixins/device_checker.dart';
+import 'package:plan_shop/utilities/page_navigation.dart';
+import 'package:plan_shop/widgets/buttons/round_button.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({Key? key}) : super(key: key);
+class WelcomeScreen extends StatelessWidget with DeviceChecker {
+   WelcomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,7 @@ class WelcomeScreen extends StatelessWidget {
           const Expanded(child: SizedBox()),
           Container(
             padding: EdgeInsets.symmetric(
-                horizontal: MediaQuery.of(context).size.width * 0.05,
+                horizontal: MediaQuery.of(context).size.width * 0.1,
                 vertical: MediaQuery.of(context).size.width * 0.1),
             decoration: const BoxDecoration(
                 color: Colors.lightGreen,
@@ -33,27 +38,63 @@ class WelcomeScreen extends StatelessWidget {
             width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
-                Text(
+              children: [
+                const Text(
                   'Welcome',
                   style: TextStyle(
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
+                      decoration: TextDecoration.none,
                       color: Colors.black),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
-                Text(
+                const Text(
                   "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                   style: TextStyle(
                       fontSize: 12,
                       color: Colors.black,
+                      decoration: TextDecoration.none,
                       fontWeight: FontWeight.normal),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    RoundButton(
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        backgroundColor: Colors.black,
+                        height: 40,
+                        text: 'Sign In',
+                        onPressed: () {
+                          if(isIOS){
+                            openPageIOS(const RegisterScreen(), context);
+                          }else{
+                            openPageAndroid(const RegisterScreen(), context);
+                          }
+                        }),
+                    RoundButton(
+                        width: MediaQuery.of(context).size.width * 0.35,
+                        backgroundColor: Colors.white,
+                        textColor: Colors.black,
+                        height: 40,
+                        text: 'Sign Up',
+                        onPressed: () {
+                          print('test');
+                          if(isIOS){
+                            openPageIOS(const LoginScreen(), context);
+                          }else{
+                            openPageAndroid(const LoginScreen(), context);
+                          }
+                        }),
+                  ],
                 )
               ],
             ),
-          )
+          ),
         ],
       ),
     );
