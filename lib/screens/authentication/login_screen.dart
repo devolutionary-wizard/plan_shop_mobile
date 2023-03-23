@@ -5,6 +5,8 @@ import 'package:plan_shop/utilities/page_navigation.dart';
 import 'package:plan_shop/widgets/buttons/round_button.dart';
 import 'package:plan_shop/widgets/text_input/text_form_field.dart';
 
+import '../../widgets/buttons/social_button.dart';
+
 class LoginScreen extends StatefulWidget {
   LoginScreen({Key? key}) : super(key: key);
 
@@ -76,38 +78,83 @@ class _LoginScreenState extends State<LoginScreen> with DeviceChecker {
           Expanded(
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 15),
+
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                       topRight: Radius.circular(24),
                       topLeft: Radius.circular(24))),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: MediaQuery.of(context).size.width * 0.2,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.width * 0.2,
+                          ),
+                          CustomTextFormField(
+                            textEditingController: _usernameController,
+                            hintText: 'Username',
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          CustomTextFormField(
+                            textEditingController: _passwordController,
+                            hintText: 'Password',
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          RoundButton(
+                              width: double.infinity,
+                              height: 60,
+                              text: 'Sign In',
+                              backgroundColor: Colors.black,
+                              onPressed: () {})
+                        ],
+                      ),
                     ),
-                    CustomTextFormField(
-                      textEditingController: _usernameController,
-                      hintText: 'Username',
+                  ),
+                  const SizedBox(
+                    height: 50,
+                  ),
+                  Expanded(
+                    child: Container(color: Colors.grey[300],width: MediaQuery.of(context).size.width,
+                      padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 40),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SocialButton(
+                            iconData: Icons.facebook_outlined,
+                            text: 'Continue with Facebook',
+                            onTap: () {
+                              debugPrint('Hello ');
+                            },
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          SocialButton(
+                            iconData: Icons.facebook_outlined,
+                            text: 'Continue with Google',
+                            onTap: () {
+                              debugPrint('Hello ');
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    const SizedBox(height: 15,),
-                    CustomTextFormField(
-                      textEditingController: _passwordController,
-                      hintText: 'Password',
-                    ),
-                    const SizedBox(height: 25,),
-                    RoundButton(width: double.infinity, height: 60, text: 'Sign In', backgroundColor: Colors.black, onPressed: (){
-
-                    })
-                  ],
-                ),
+                  )
+                ],
               ),
             ),
-          )
+          ),
         ],
       ),
     );
